@@ -1,4 +1,6 @@
-import React, { useEffect } from 'react';
+import Axios from 'axios';
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { detailsOrder } from '../actions/orderActions';
@@ -6,19 +8,50 @@ import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 
 export default function OrderScreen(props) {
+  let src = "";
   const orderId = props.match.params.id;
+  const [sdkReady, setSdkReady] = useState(false);
   const orderDetails = useSelector((state) => state.orderDetails);
   const { order, loading, error } = orderDetails;
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(detailsOrder(orderId));
-  }, [dispatch, orderId]);
+    const addPayPalScript = async () => {
+      const { data } = await Axios.get('/api/config/paypal');
+      const script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = `https://www.paypal.com/sdk/js?client-id=${data}`;
+      src = `https://www.paypal.com/sdk/js?client-id=${data}`;
+      script.async = true;
+      script.onload = () => {
+        setSdkReady(true);
+      };
+      document.body.appendChild(script);
+    };
+    if (!order) {
+      dispatch(detailsOrder(orderId));
+    } else {
+      if (!order.isPaid) {
+        if (!window.paypal) {
+          addPayPalScript();
+        } else {
+          setSdkReady(true);
+        }
+      }
+    }
+  }, [dispatch, order, orderId, sdkReady]);
+
+  const successPaymentHnadler = () => {
+    // TODO: dispatch pay order
+  };
+
   return loading ? (
     <LoadingBox></LoadingBox>
   ) : error ? (
     <MessageBox variant="danger">{error}</MessageBox>
   ) : (
+    
     <div>
+      
       <h1>Order {order._id}</h1>
       <div className="row top">
         <div className="col-2">
@@ -76,7 +109,6 @@ export default function OrderScreen(props) {
                             {item.name}
                           </Link>
                         </div>
-
                         <div>
                           {item.qty} x ${item.price} = ${item.qty * item.price}
                         </div>
@@ -122,6 +154,34 @@ export default function OrderScreen(props) {
                   </div>
                 </div>
               </li>
+              {!order.isPaid && (
+                <li>
+                  {!sdkReady ? (
+                    <LoadingBox></LoadingBox>
+                  ) : (
+                    <PayPalScriptProvider  options={{ "client-id": process.env.PAYPAL_CLIENT_ID}}>
+                        <PayPalButtons style={{ layout: "vertical" }} createOrder={(data, actions, err) => {
+                          return actions.order.create({
+                            intent: "CAPTURE",
+                            purchase_units: [
+                              {
+                                description: "clothes",
+                                amount: {
+                                  currency_code: "USD",
+                                  value: order.totalPrice
+                                }
+                              }
+                            ]
+                          },)
+                        }}
+                        onApprove={async (data, actions) => {
+                          const order = await actions.order.capture();
+                          console.log("Successful order: " + order);
+                        }}/>
+                    </PayPalScriptProvider>
+                  )}
+                </li>
+              )}
             </ul>
           </div>
         </div>
