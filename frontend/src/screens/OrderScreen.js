@@ -159,6 +159,7 @@ export default function OrderScreen(props) {
                     <LoadingBox></LoadingBox>
 
                   ) : (
+
                     <PayPalScriptProvider options={{ "client-id": process.env.PAYPAL_CLIENT_ID}}>
                         <PayPalButtons style={{ layout: "vertical" }} createOrder={(data, actions, err) => {
                           return actions.order.create({
