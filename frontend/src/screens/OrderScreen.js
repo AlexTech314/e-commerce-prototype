@@ -20,7 +20,6 @@ export default function OrderScreen(props) {
       const script = document.createElement('script');
       script.type = 'text/javascript';
       script.src = `https://www.paypal.com/sdk/js?client-id=${data}`;
-      src = `https://www.paypal.com/sdk/js?client-id=${data}`;
       script.async = true;
       script.onload = () => {
         setSdkReady(true);
@@ -158,8 +157,9 @@ export default function OrderScreen(props) {
                 <li>
                   {!sdkReady ? (
                     <LoadingBox></LoadingBox>
+
                   ) : (
-                    <PayPalScriptProvider  options={{ "client-id": process.env.PAYPAL_CLIENT_ID}}>
+                    <PayPalScriptProvider options={{ "client-id": process.env.PAYPAL_CLIENT_ID}}>
                         <PayPalButtons style={{ layout: "vertical" }} createOrder={(data, actions, err) => {
                           return actions.order.create({
                             intent: "CAPTURE",
