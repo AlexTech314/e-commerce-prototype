@@ -8,7 +8,7 @@ import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 
 export default function OrderScreen(props) {
-  let src = "";
+  var client_id = "";
   const orderId = props.match.params.id;
   const [sdkReady, setSdkReady] = useState(false);
   const orderDetails = useSelector((state) => state.orderDetails);
@@ -160,8 +160,9 @@ export default function OrderScreen(props) {
 
                   ) : (
 
-                    <PayPalScriptProvider options={{ "client-id": process.env.PAYPAL_CLIENT_ID}}>
+                    <PayPalScriptProvider options={{ "client-id": client_id}}>
                         <PayPalButtons style={{ layout: "vertical" }} createOrder={(data, actions, err) => {
+                          console.log(client_id);
                           return actions.order.create({
                             intent: "CAPTURE",
                             purchase_units: [
