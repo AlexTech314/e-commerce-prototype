@@ -17,6 +17,8 @@ export default function OrderScreen(props) {
   useEffect(() => {
     const addPayPalScript = async () => {
       const { data } = await Axios.get('/api/config/paypal');
+      console.log(data);
+      client_id = data;
       const script = document.createElement('script');
       script.type = 'text/javascript';
       script.src = `https://www.paypal.com/sdk/js?client-id=${data}`;
@@ -159,9 +161,9 @@ export default function OrderScreen(props) {
                     <LoadingBox></LoadingBox>
 
                   ) : (
-
                     <PayPalScriptProvider options={{ "client-id": client_id}}>
                         <PayPalButtons style={{ layout: "vertical" }} createOrder={(data, actions, err) => {
+                          console.log("-----------------------------");
                           console.log(client_id);
                           return actions.order.create({
                             intent: "CAPTURE",
