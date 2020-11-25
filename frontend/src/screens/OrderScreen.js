@@ -14,6 +14,7 @@ export default function OrderScreen(props) {
   const orderDetails = useSelector((state) => state.orderDetails);
   const { order, loading, error } = orderDetails;
   const dispatch = useDispatch();
+  let t = false;
   useEffect(() => {
     const addPayPalScript = async () => {
       const { data } = await Axios.get('/api/config/paypal');
@@ -25,6 +26,7 @@ export default function OrderScreen(props) {
       script.async = true;
       script.onload = () => {
         setSdkReady(true);
+        t = true;
       };
       document.body.appendChild(script);
     };
@@ -39,7 +41,7 @@ export default function OrderScreen(props) {
         }
       }
     }
-  }, [dispatch, order, orderId, sdkReady]);
+  }, [dispatch, order, orderId, sdkReady, t]);
 
   const successPaymentHnadler = () => {
     // TODO: dispatch pay order
