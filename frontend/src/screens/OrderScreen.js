@@ -1,17 +1,25 @@
 import Axios from 'axios';
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import React, { useEffect, useState } from 'react';
+import { detailsOrder, payOrder } from '../actions/orderActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { detailsOrder } from '../actions/orderActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
+import { ORDER_PAY_RESET } from '../constants/orderConstants';
+
 
 export default function OrderScreen(props) {
   var client_id = "";
   const orderId = props.match.params.id;
   const [sdkReady, setSdkReady] = useState(false);
   const orderDetails = useSelector((state) => state.orderDetails);
+  const orderPay = useSelector((state) => state.orderPay);
+  const {
+    loading: loadingPay,
+    error: errorPay,
+    success: successPay,
+  } = orderPay;
   const { order, loading, error } = orderDetails;
   const dispatch = useDispatch();
   let t = false;
@@ -30,7 +38,8 @@ export default function OrderScreen(props) {
       };
       document.body.appendChild(script);
     };
-    if (!order) {
+    if (!order || successPay || (order && order._id !== orderId)) {
+      dispatch({ type: ORDER_PAY_RESET });
       dispatch(detailsOrder(orderId));
     } else {
       if (!order.isPaid) {
@@ -41,10 +50,10 @@ export default function OrderScreen(props) {
         }
       }
     }
-  }, [dispatch, order, orderId, sdkReady, t]);
+  }, [dispatch, order, orderId, sdkReady, successPay, t]);
 
-  const successPaymentHnadler = () => {
-    // TODO: dispatch pay order
+  const successPaymentHandler = (paymentResult) => {
+    dispatch(payOrder(order, paymentResult));
   };
 
   return loading ? (
@@ -161,8 +170,12 @@ export default function OrderScreen(props) {
                 <li>
                   {!sdkReady ? (
                     <LoadingBox></LoadingBox>
-
                   ) : (
+                    <>
+                      {errorPay && (
+                        <MessageBox variant="danger">{errorPay}</MessageBox>
+                      )}
+                      {loadingPay && <LoadingBox></LoadingBox>}
                     <PayPalScriptProvider options={{ "client-id": client_id}}>
                         <PayPalButtons style={{ layout: "vertical" }} createOrder={(data, actions, err) => {
                           console.log("-----------------------------");
@@ -182,9 +195,11 @@ export default function OrderScreen(props) {
                         }}
                         onApprove={async (data, actions) => {
                           const order = await actions.order.capture();
+                          successPaymentHandler();
                           console.log("Successful order: " + order);
                         }}/>
                     </PayPalScriptProvider>
+                    </>
                   )}
                 </li>
               )}
