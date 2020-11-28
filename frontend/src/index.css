@@ -88,6 +88,9 @@ button.primary {
 button.block {
   width: 100%;
 }
+button.small {
+  font-size: 1.2rem;
+}
 /* Header */
 header a {
   color: #ffffff;
@@ -127,7 +130,6 @@ a.brand {
 .min-30 {
   min-width: 30rem;
 }
-
 /* Image */
 img {
   border-radius: 0.5rem;
@@ -171,7 +173,6 @@ img.large {
 .loading {
   display: block !important;
 }
-
 .success {
   color: #20a020;
 }
@@ -191,16 +192,10 @@ img.large {
   color: #a02020;
   background-color: #ffe0e0;
 }
-
 .alert-success {
   color: #20a020;
   background-color: #eeffe0;
 }
-
-button.small {
-  font-size: 1.2rem;
-}
-
 /* Form */
 .form {
   max-width: 60rem;
@@ -214,7 +209,6 @@ button.small {
 .form label {
   margin: 1rem 0;
 }
-
 /* Dropdown */
 .dropdown {
   display: inline-block;
@@ -235,7 +229,6 @@ button.small {
 .dropdown:hover .dropdown-content {
   display: block;
 }
-
 /* Checkout Steps */
 .checkout-steps > div {
   border-top: 0.3rem #c0c0c0 solid;
@@ -248,7 +241,6 @@ button.small {
   border-top-color: #f08000;
   color: #f08000;
 }
-
 /* Table */
 .table {
   width: 100%;
