@@ -8,8 +8,10 @@ import {
   orderPayReducer,
 } from './reducers/orderReducers';
 import {
+  productCreateReducer,
   productDetailsReducer,
   productListReducer,
+  productUpdateReducer,
 } from './reducers/productReducers';
 import {
   userDetailsReducer,
@@ -17,7 +19,6 @@ import {
   userSigninReducer,
   userUpdateProfileReducer,
 } from './reducers/userReducers';
-
 const initialState = {
   userSignin: {
     userInfo: localStorage.getItem('userInfo')
@@ -46,6 +47,8 @@ const reducer = combineReducers({
   orderMineList: orderMineListReducer,
   userDetails: userDetailsReducer,
   userUpdateProfile: userUpdateProfileReducer,
+  productCreate: productCreateReducer,
+  productUpdate: productUpdateReducer,
 });
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
