@@ -1,6 +1,6 @@
 import Axios from 'axios';
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { deliverOrder, detailsOrder, payOrder } from '../actions/orderActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -12,7 +12,7 @@ import {
 } from '../constants/orderConstants';
 
 export default function OrderScreen(props) {
-  var client_id = "";
+  const client_id = useRef(null);
   const orderId = props.match.params.id;
   const [sdkReady, setSdkReady] = useState(false);
   const orderDetails = useSelector((state) => state.orderDetails);
@@ -32,19 +32,21 @@ export default function OrderScreen(props) {
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
   const dispatch = useDispatch();
-  let t = false;
+
   useEffect(() => {
     const addPayPalScript = async () => {
       const { data } = await Axios.get('/api/config/paypal');
-      console.log(data);
-      client_id = data;
+      client_id.current = data;
+      console.log("the client id");
+      console.log(client_id.current);
       const script = document.createElement('script');
       script.type = 'text/javascript';
       script.src = `https://www.paypal.com/sdk/js?client-id=${data}`;
       script.async = true;
       script.onload = () => {
         setSdkReady(true);
-        t = true;
+        console.log("sdk ready is ");
+        console.log(sdkReady);
       };
       document.body.appendChild(script);
     };
@@ -60,6 +62,7 @@ export default function OrderScreen(props) {
     } else {
       if (!order.isPaid) {
         if (!window.paypal) {
+          console.log("this is where it goes when it doesn't work");
           addPayPalScript();
         } else {
           setSdkReady(true);
@@ -196,7 +199,7 @@ export default function OrderScreen(props) {
                         <MessageBox variant="danger">{errorPay}</MessageBox>
                       )}
                       {loadingPay && <LoadingBox></LoadingBox>}
-                    <PayPalScriptProvider options={{ "client-id": client_id}}>
+                    <PayPalScriptProvider options={{ "client-id": client_id.current}}>
                         <PayPalButtons style={{ layout: "vertical" }} 
                         createOrder={(data, actions, err) => {
                           return actions.order.create({
