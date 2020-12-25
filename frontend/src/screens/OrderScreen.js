@@ -12,7 +12,7 @@ import {
 } from '../constants/orderConstants';
 
 export default function OrderScreen(props) {
-  const client_id = useRef(null);
+  var client_id = useRef('sb');
   const orderId = props.match.params.id;
   const [sdkReady, setSdkReady] = useState(false);
   const orderDetails = useSelector((state) => state.orderDetails);
@@ -32,6 +32,18 @@ export default function OrderScreen(props) {
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const getClientId = async () => {
+      const { data } = await Axios.get('/api/config/paypal');
+      client_id.current = data;
+      console.log("regular useeffect");
+      console.log(client_id.current);
+    }
+    if (client_id.current === 'sb' || client_id.current === null) {
+      getClientId();
+    }
+  }, [dispatch, order, orderId, sdkReady, successPay, successDeliver, client_id])
 
   useEffect(() => {
     const addPayPalScript = async () => {
@@ -56,9 +68,15 @@ export default function OrderScreen(props) {
       successDeliver ||
       (order && order._id !== orderId)
     ) {
+      console.log("!order: " + !order);
+      console.log("successPay: " + !order);
+      console.log("successDeliver: " + !order);
+      console.log(orderId);
+      console.log(client_id.current);
       dispatch({ type: ORDER_PAY_RESET });
       dispatch({ type: ORDER_DELIVER_RESET });
       dispatch(detailsOrder(orderId));
+      
       console.log("now, this is where it doesn't work");
     } else {
       if (!order.isPaid) {
@@ -69,7 +87,7 @@ export default function OrderScreen(props) {
         }
       }
     }
-  }, [dispatch, order, orderId, sdkReady, successPay, successDeliver]);
+  }, [dispatch, order, orderId, sdkReady, successPay, successDeliver, client_id]);
 
   const successPaymentHandler = (paymentResult) => {
     dispatch(payOrder(order, paymentResult));
