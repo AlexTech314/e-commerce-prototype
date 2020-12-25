@@ -59,10 +59,10 @@ export default function OrderScreen(props) {
       dispatch({ type: ORDER_PAY_RESET });
       dispatch({ type: ORDER_DELIVER_RESET });
       dispatch(detailsOrder(orderId));
+      console.log("now, this is where it doesn't work");
     } else {
       if (!order.isPaid) {
         if (!window.paypal) {
-          console.log("this is where it goes when it doesn't work");
           addPayPalScript();
         } else {
           setSdkReady(true);
@@ -199,7 +199,7 @@ export default function OrderScreen(props) {
                         <MessageBox variant="danger">{errorPay}</MessageBox>
                       )}
                       {loadingPay && <LoadingBox></LoadingBox>}
-                    <PayPalScriptProvider options={{ "client-id": client_id.current}}>
+                    <PayPalScriptProvider options={{ "client-id": client_id.current }}>
                         <PayPalButtons style={{ layout: "vertical" }} 
                         createOrder={(data, actions, err) => {
                           return actions.order.create({
