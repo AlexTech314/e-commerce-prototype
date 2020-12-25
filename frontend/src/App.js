@@ -34,7 +34,7 @@ function App() {
         <header className="row">
           <div>
             <Link className="brand" to="/">
-              amazona
+              UnSad
             </Link>
           </div>
           <div>

@@ -224,11 +224,11 @@ export default function OrderScreen(props) {
                             intent: "CAPTURE",
                             purchase_units: [
                               {
-                                description: "clothes",
+                                description: "UnSad Merch",
                                 amount: {
                                   currency_code: "USD",
                                   value: order.totalPrice
-                                }
+                                },
                               }
                             ]
                           },)

@@ -26,7 +26,7 @@ body {
 }
 header {
   grid-area: header;
-  background-color: #203040;
+  background-color: #000000;
 }
 main {
   grid-area: main;
@@ -34,7 +34,7 @@ main {
 }
 footer {
   grid-area: footer;
-  background-color: #203040;
+  background-color: #000000;
   color: #ffffff;
 }
 /* Common */
@@ -238,8 +238,8 @@ img.large {
   font-weight: bold;
 }
 .checkout-steps > div.active {
-  border-top-color: #f08000;
-  color: #f08000;
+  border-top-color: #000000;
+  color: #000000;
 }
 /* Table */
 .table {
