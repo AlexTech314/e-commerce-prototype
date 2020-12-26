@@ -10,7 +10,7 @@ import MessageBox from '../components/MessageBox';
 export default function ProductScreen(props) {
   const dispatch = useDispatch();
   const productId = props.match.params.id;
-  const [size, setSize] = useState("medium");
+  const [size, setSize] = useState("M");
   const [qty, setQty] = useState(1);
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
@@ -84,13 +84,13 @@ export default function ProductScreen(props) {
                               value={size}
                               onChange={(e) => setSize(e.target.value)}
                             >
-                                  <option key="M" value="medium">
+                                  <option key="M" value="M">
                                     M
                                   </option>
-                                  <option key="L" value="large">
+                                  <option key="L" value="L">
                                     L
                                   </option>
-                                  <option key="XL" value="extra-large">
+                                  <option key="XL" value="XL">
                                     XL
                                   </option>
                                 )
@@ -103,21 +103,21 @@ export default function ProductScreen(props) {
                               value={qty}
                               onChange={(e) => setQty(e.target.value)}
                             >
-                              {size === "medium" && [...Array(product.countInStockM).keys()].map(
+                              {size === "M" && [...Array(product.countInStockM).keys()].map(
                                 (x) => (
                                   <option key={x + 1} value={x + 1}>
                                     {x + 1}
                                   </option>
                                 )  
                               )}
-                              {size === "large" && [...Array(product.countInStockL).keys()].map(
+                              {size === "L" && [...Array(product.countInStockL).keys()].map(
                                 (x) => (
                                   <option key={x + 1} value={x + 1}>
                                     {x + 1}
                                   </option>
                                 )  
                               )}
-                              {size === "extra-large" && [...Array(product.countInStockXL).keys()].map(
+                              {size === "XL" && [...Array(product.countInStockXL).keys()].map(
                                 (x) => (
                                   <option key={x + 1} value={x + 1}>
                                     {x + 1}

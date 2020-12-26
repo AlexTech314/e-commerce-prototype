@@ -56,41 +56,27 @@ export default function CartScreen(props) {
                   <div className="min-30">
                     <Link to={`/product/${item.product}`}>{item.name}</Link>
                   </div>
-                  {/* <div>
-                    <select
-                      
-                    >
-                        <option key="medium" value="medium" onClick={(e) => setNewSize("medium")}>
-                          M
-                        </option>
-                        <option key="large" value="large" onClick={(e) => setNewSize("large")}>
-                          L
-                        </option>
-                        <option key="extra-large" value="extra-large" onClick={(e) => setNewSize("extra-large")}>
-                          XL
-                        </option>
-                    </select>
-                  </div> */}
+                    <p>{item.size}</p>
                   <div>
                     <select
                       value={item.qty}
                       onChange={(e) =>
                         dispatch(
-                          addToCart(item.product, Number(e.target.value))
+                          addToCart(item.product, Number(e.target.value), item.size)
                         )
                       }
                     >
-                      {newSize === "medium" && [...Array(item.countInStockM).keys()].map((x) => (
+                      {item.size === "M" && [...Array(item.countInStockM).keys()].map((x) => (
                         <option key={x + 1} value={x + 1}>
                           {x + 1}
                         </option>
                       ))}
-                      {newSize === "large" && [...Array(item.countInStockL).keys()].map((x) => (
+                      {item.size === "L" && [...Array(item.countInStockL).keys()].map((x) => (
                         <option key={x + 1} value={x + 1}>
                           {x + 1}
                         </option>
                       ))}
-                      {newSize === "extra-large" && [...Array(item.countInStockXL).keys()].map((x) => (
+                      {item.size === "XL" && [...Array(item.countInStockXL).keys()].map((x) => (
                         <option key={x + 1} value={x + 1}>
                           {x + 1}
                         </option>
