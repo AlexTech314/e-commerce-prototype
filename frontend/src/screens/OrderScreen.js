@@ -46,6 +46,7 @@ export default function OrderScreen(props) {
   }, [dispatch, order, orderId, sdkReady, successPay, successDeliver, client_id])
 
   useEffect(() => {
+    console.log(orderDetails);
     const addPayPalScript = async () => {
       const { data } = await Axios.get('/api/config/paypal');
       client_id.current = data;
@@ -161,6 +162,9 @@ export default function OrderScreen(props) {
                           <Link to={`/product/${item.product}`}>
                             {item.name}
                           </Link>
+                        </div>
+                        <div className="min-30">
+                          <div>{item.size}</div>
                         </div>
                         <div>
                           {item.qty} x ${item.price} = ${item.qty * item.price}

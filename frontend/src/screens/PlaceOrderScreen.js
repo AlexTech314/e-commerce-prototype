@@ -24,9 +24,11 @@ export default function PlaceOrderScreen(props) {
   const dispatch = useDispatch();
   const placeOrderHandler = () => {
     // TODO: dispatch place order action
+    
     dispatch(createOrder({ ...cart, orderItems: cart.cartItems }));
   };
   useEffect(() => {
+    // console.log(cart.cartItems);
     if (success) {
       props.history.push(`/order/${order._id}`);
       dispatch({ type: ORDER_CREATE_RESET });
@@ -75,6 +77,9 @@ export default function PlaceOrderScreen(props) {
                           <Link to={`/product/${item.product}`}>
                             {item.name}
                           </Link>
+                        </div>
+                        <div className="min-30">
+                          <p>{item.size}</p>
                         </div>
                         <div>
                           {item.qty} x ${item.price} = ${item.qty * item.price}
