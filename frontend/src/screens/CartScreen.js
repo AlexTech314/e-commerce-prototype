@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { addToCart, removeFromCart } from '../actions/cartActions';
@@ -7,17 +7,24 @@ import MessageBox from '../components/MessageBox';
 export default function CartScreen(props) {
   const productId = props.match.params.id;
   const qty = props.location.search
-    ? Number(props.location.search.split('=')[1])
+    ? Number(props.location.search.split('~')[1])
     : 1;
+  const size = props.location.search
+    ? String(props.location.search.split('!!!')[1])
+    : 1;
+
+  const [newSize, setNewSize] = useState(size);
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
   const dispatch = useDispatch();
   useEffect(() => {
     console.log(qty);
+    console.log(size);
+
     if (productId) {
-      dispatch(addToCart(productId, qty));
+      dispatch(addToCart(productId, qty, size));
     }
-  }, [dispatch, productId, qty]);
+  }, [dispatch, productId, qty, size]);
 
   const removeFromCartHandler = (id) => {
     dispatch(removeFromCart(id));
@@ -49,6 +56,21 @@ export default function CartScreen(props) {
                   <div className="min-30">
                     <Link to={`/product/${item.product}`}>{item.name}</Link>
                   </div>
+                  {/* <div>
+                    <select
+                      
+                    >
+                        <option key="medium" value="medium" onClick={(e) => setNewSize("medium")}>
+                          M
+                        </option>
+                        <option key="large" value="large" onClick={(e) => setNewSize("large")}>
+                          L
+                        </option>
+                        <option key="extra-large" value="extra-large" onClick={(e) => setNewSize("extra-large")}>
+                          XL
+                        </option>
+                    </select>
+                  </div> */}
                   <div>
                     <select
                       value={item.qty}
@@ -58,7 +80,17 @@ export default function CartScreen(props) {
                         )
                       }
                     >
-                      {[...Array(item.countInStockM).keys()].map((x) => (
+                      {newSize === "medium" && [...Array(item.countInStockM).keys()].map((x) => (
+                        <option key={x + 1} value={x + 1}>
+                          {x + 1}
+                        </option>
+                      ))}
+                      {newSize === "large" && [...Array(item.countInStockL).keys()].map((x) => (
+                        <option key={x + 1} value={x + 1}>
+                          {x + 1}
+                        </option>
+                      ))}
+                      {newSize === "extra-large" && [...Array(item.countInStockXL).keys()].map((x) => (
                         <option key={x + 1} value={x + 1}>
                           {x + 1}
                         </option>

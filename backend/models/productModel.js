@@ -4,9 +4,6 @@ const productSchema = new mongoose.Schema(
   {
     name: { type: String, required: true, unique: true },
     //added in size
-    medium: { type: Boolean, required: true, default: true },
-    large: { type: Boolean, required: true, default: false },
-    extra_large: { type: Boolean, required: true, default: false },
     image: { type: String, required: true },
     brand: { type: String, required: true },
     category: { type: String, required: true },

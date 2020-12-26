@@ -51,6 +51,7 @@ productRouter.post(
     res.send({ message: 'Product Created', product: createdProduct });
   })
 );
+
 productRouter.put(
   '/:id',
   isAuth,
@@ -68,6 +69,22 @@ productRouter.put(
       product.description = req.body.description;
       const updatedProduct = await product.save();
       res.send({ message: 'Product Updated', product: updatedProduct });
+    } else {
+      res.status(404).send({ message: 'Product Not Found' });
+    }
+  })
+);
+
+productRouter.put(
+  '/:id/size',
+  isAuth,
+  expressAsyncHandler(async (req, res) => {
+    const productId = req.params.id;
+    const product = await Product.findById(productId);
+    if (product) {
+      product.size = req.body.size;
+      const updatedProduct = await product.save();
+      res.send({ message: 'Size Updated', product: updatedProduct });
     } else {
       res.status(404).send({ message: 'Product Not Found' });
     }
