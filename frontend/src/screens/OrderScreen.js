@@ -3,7 +3,7 @@ import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import React, { useEffect, useRef, useState } from 'react';
 import { deliverOrder, detailsOrder, payOrder } from '../actions/orderActions';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import {
@@ -40,13 +40,12 @@ export default function OrderScreen(props) {
       console.log("regular useeffect");
       console.log(client_id.current);
     }
-    if (client_id.current === 'sb' || client_id.current === null) {
+    if ((client_id.current === 'sb' || client_id.current === null)) {
       getClientId();
     }
   }, [dispatch, order, orderId, sdkReady, successPay, successDeliver, client_id])
 
   useEffect(() => {
-    console.log(orderDetails);
     const addPayPalScript = async () => {
       const { data } = await Axios.get('/api/config/paypal');
       client_id.current = data;
@@ -95,6 +94,7 @@ export default function OrderScreen(props) {
   };
 
   const deliverHandler = () => {
+    console.log("inside deliver handler");
     dispatch(deliverOrder(order._id));
   };
 
@@ -247,7 +247,7 @@ export default function OrderScreen(props) {
                   )}
                 </li>
               )}
-              {userInfo.isAdmin && order.isPaid && !order.isDelivered && (
+              {userInfo ? userInfo.isAdmin && order.isPaid && !order.isDelivered && (
                 <li>
                   {loadingDeliver && <LoadingBox></LoadingBox>}
                   {errorDeliver && (
@@ -261,6 +261,8 @@ export default function OrderScreen(props) {
                     Deliver Order
                   </button>
                 </li>
+              ) : (
+                <Redirect to="/" />
               )}
             </ul>
           </div>
