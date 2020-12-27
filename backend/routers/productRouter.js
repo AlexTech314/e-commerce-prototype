@@ -76,15 +76,17 @@ productRouter.put(
 );
 
 productRouter.put(
-  '/:id/size',
+  '/:id',
   isAuth,
   expressAsyncHandler(async (req, res) => {
     const productId = req.params.id;
     const product = await Product.findById(productId);
     if (product) {
-      product.size = req.body.size;
+      product.countInStockM = product.countInStockM - req.body.MSold;
+      product.countInStockL = product.countInStockL - req.body.LSold;
+      product.countInStockXL = product.countInStockXL - req.body.XLSold;
       const updatedProduct = await product.save();
-      res.send({ message: 'Size Updated', product: updatedProduct });
+      res.send({ message: 'Product Updated', product: updatedProduct });
     } else {
       res.status(404).send({ message: 'Product Not Found' });
     }

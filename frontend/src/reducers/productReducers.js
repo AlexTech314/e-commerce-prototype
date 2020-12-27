@@ -17,6 +17,10 @@ const {
   PRODUCT_DELETE_SUCCESS,
   PRODUCT_DELETE_FAIL,
   PRODUCT_DELETE_RESET,
+  PRODUCT_QUANTITY_UPDATE_REQUEST,
+  PRODUCT_QUANTITY_UPDATE_SUCCESS,
+  PRODUCT_QUANTITY_UPDATE_FAIL,
+  PRODUCT_QUANTITY_UPDATE_RESET,
 } = require('../constants/productConstants');
 
 export const productListReducer = (
@@ -74,6 +78,22 @@ export const productUpdateReducer = (state = {}, action) => {
       return state;
   }
 };
+
+export const productQuantityUpdateReducer = (state = {}, action) => {
+  switch (action.type) {
+    case PRODUCT_QUANTITY_UPDATE_REQUEST:
+      return { loading: true };
+    case PRODUCT_QUANTITY_UPDATE_SUCCESS:
+      return { loading: false, success: true };
+    case PRODUCT_QUANTITY_UPDATE_FAIL:
+      return { loading: false, error: action.payload };
+    case PRODUCT_QUANTITY_UPDATE_RESET:
+      return {};
+    default:
+      return state;
+  }
+};
+
 export const productDeleteReducer = (state = {}, action) => {
   switch (action.type) {
     case PRODUCT_DELETE_REQUEST:
