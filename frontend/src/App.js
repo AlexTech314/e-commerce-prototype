@@ -31,13 +31,16 @@ function App() {
   return (
     <BrowserRouter>
       <div className="grid-container">
-        <header className="row">
+        <header className="row_nav">
           <div>
             <Link className="brand" to="/">
-              UnSad
+              <img className="big_small" src="../images/tentative_logo.jpg" alt="logo"></img>
             </Link>
           </div>
           <div>
+          <Link to="/about">
+              About
+            </Link>
             <Link to="/cart">
               Cart
               {cartItems.length > 0 && (
@@ -118,7 +121,7 @@ function App() {
           ></AdminRoute>
           <Route path="/" component={HomeScreen} exact></Route>
         </main>
-        <footer className="row center">All right reserved</footer>
+        <footer className="row center">@2020 all rights reserved</footer>
       </div>
     </BrowserRouter>
   );

@@ -15,27 +15,30 @@ body {
 }
 /* Layout */
 .grid-container {
+  text-align: center;
   display: grid;
   grid-template-areas:
     'header'
     'main'
     'footer';
   grid-template-columns: 1fr;
-  grid-template-rows: 5rem 1fr 5rem;
+  grid-template-rows: 10rem 1fr 5rem;
   height: 100%;
 }
 header {
+  height: 8.5rem;
   grid-area: header;
   background-color: #000000;
+  padding-top: 1rem;
 }
 main {
   grid-area: main;
-  padding: 1rem;
 }
 footer {
   grid-area: footer;
   background-color: #000000;
   color: #ffffff;
+  padding-top: 1rem;
 }
 /* Common */
 h1 {
@@ -95,9 +98,12 @@ button.small {
 header a {
   color: #ffffff;
   padding: 1rem;
+  padding-right: 3rem;
 }
 a.brand {
-  color: #ffffff;
+  
+  text-align: center;
+  color: #000000;
   font-size: 3rem;
   font-weight: bold;
 }
@@ -115,9 +121,20 @@ a.brand {
   justify-content: space-between;
   align-items: center;
 }
+.row_nav {
+  position: fixed;
+  display: flex;
+  flex-wrap: wrap;
+  /* flex-direction: row; */
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
 .row.center {
   justify-content: center;
+  padding-bottom: 10rem;
 }
+
 .row.top {
   align-items: flex-start;
 }
@@ -134,10 +151,23 @@ a.brand {
 img {
   border-radius: 0.5rem;
 }
+
 img.small {
   max-width: 5rem;
   width: 100%;
 }
+
+img.giant {
+  max-height: 50rem;
+  width: 100%;
+  padding: 0rem;
+}
+
+img.big_small {
+  max-width: 7rem;
+  width: 100%;
+}
+
 img.medium {
   max-width: 29rem;
   width: 100%;
@@ -257,4 +287,11 @@ img.large {
 }
 .table button {
   margin: 0 0.2rem;
+}
+
+/*HomeScreen*/
+p.homescreen {
+  padding-top: 3rem;
+  padding-left: 25rem;
+  padding-right: 25rem;
 }
