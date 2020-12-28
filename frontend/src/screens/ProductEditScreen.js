@@ -11,7 +11,9 @@ export default function ProductEditScreen(props) {
   const [price, setPrice] = useState('');
   const [image, setImage] = useState('');
   const [category, setCategory] = useState('');
-  const [countInStock, setCountInStock] = useState('');
+  const [countInStockM, setCountInStockM] = useState('');
+  const [countInStockL, setCountInStockL] = useState('');
+  const [countInStockXL, setCountInStockXL] = useState('');
   const [brand, setBrand] = useState('');
   const [description, setDescription] = useState('');
   const productDetails = useSelector((state) => state.productDetails);
@@ -35,7 +37,9 @@ export default function ProductEditScreen(props) {
       setPrice(product.price);
       setImage(product.image);
       setCategory(product.category);
-      setCountInStock(product.countInStock);
+      setCountInStockM(product.countInStockM);
+      setCountInStockL(product.countInStockL);
+      setCountInStockXL(product.countInStockXL);
       setBrand(product.brand);
       setDescription(product.description);
     }
@@ -51,7 +55,9 @@ export default function ProductEditScreen(props) {
         image,
         category,
         brand,
-        countInStock,
+        countInStockM,
+        countInStockL,
+        countInStockXL,
         description,
       })
     );
@@ -159,13 +165,33 @@ export default function ProductEditScreen(props) {
               ></input>
             </div>
             <div>
-              <label htmlFor="countInStock">Count In Stock</label>
+              <label htmlFor="countInStockM">Count In StockM</label>
               <input
                 id="countInStock"
                 type="text"
                 placeholder="Enter countInStock"
-                value={countInStock}
-                onChange={(e) => setCountInStock(e.target.value)}
+                value={countInStockM}
+                onChange={(e) => setCountInStockM(e.target.value)}
+              ></input>
+            </div>
+            <div>
+              <label htmlFor="countInStockL">Count In StockL</label>
+              <input
+                id="countInStock"
+                type="text"
+                placeholder="Enter countInStock"
+                value={countInStockL}
+                onChange={(e) => setCountInStockL(e.target.value)}
+              ></input>
+            </div>
+            <div>
+              <label htmlFor="countInStockXL">Count In StockXL</label>
+              <input
+                id="countInStock"
+                type="text"
+                placeholder="Enter countInStock"
+                value={countInStockXL}
+                onChange={(e) => setCountInStockXL(e.target.value)}
               ></input>
             </div>
             <div>

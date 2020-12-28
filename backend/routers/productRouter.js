@@ -65,7 +65,9 @@ productRouter.put(
       product.image = req.body.image;
       product.category = req.body.category;
       product.brand = req.body.brand;
-      product.countInStock = req.body.countInStock;
+      product.countInStockM = req.body.countInStockM;
+      product.countInStockL = req.body.countInStockL;
+      product.countInStockXL = req.body.countInStockXL;
       product.description = req.body.description;
       const updatedProduct = await product.save();
       res.send({ message: 'Product Updated', product: updatedProduct });
