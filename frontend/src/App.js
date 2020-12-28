@@ -121,7 +121,34 @@ function App() {
           ></AdminRoute>
           <Route path="/" component={HomeScreen} exact></Route>
         </main>
-        <footer className="row center">@2020 all rights reserved</footer>
+        <footer className="foot_stack">
+        <div class="social-media">
+                    <ul class="nav-list">
+                        <li>
+                            <a href="https://www.instagram.com/unsad.co/" class="icon-link">
+                                <i class="fab fa-instagram" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        {/* <li>
+                            <a href="#" class="icon-link">
+                                <i class="fab fa-twitter-square"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="icon-link">
+                                <i class="fab fa-dribbble-square"></i>
+                            </a>
+                        </li>  */}
+                    </ul>
+                </div>
+          <>
+          <div>Contact Us:</div>
+          <div>631-935-2590</div>
+          <div>alest314@gmail.com</div>
+          <div>@2020 all rights reserved</div>
+          </>
+          </footer>
+        
       </div>
     </BrowserRouter>
   );

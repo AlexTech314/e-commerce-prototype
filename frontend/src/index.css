@@ -135,6 +135,14 @@ a.brand {
   padding-bottom: 10rem;
 }
 
+.foot_stack {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 5rem;
+  height: 5rem;
+}
+
 .row.top {
   align-items: flex-start;
 }
@@ -182,11 +190,17 @@ img.large {
 
 /* Card */
 .card {
-  border: 0.1rem #c0c0c0 solid;
+  /* border: 0.1rem #c0c0c0 solid; */
   background-color: #f8f8f8;
-  border-radius: 0.5rem;
+  /* border-radius: 0.5rem; */
   margin: 1rem;
+  transition: 0.3s;
 }
+
+.card:hover{
+  transform: scale(1.05);
+}
+
 .card-body {
   padding: 1rem;
 }
@@ -301,3 +315,37 @@ p.homescreen {
   padding-left: 15%;
   padding-right: 15%;
 }
+
+.social-media{
+  display: flex;
+  flex-direction: row;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.social-media i{
+  font-size: 2rem;
+  transition: color 650ms;
+}
+
+.fa-instagram:hover{
+  color: #fcbed3;
+}
+
+.fa-twitter-square:hover{
+  color: #38a1f3;
+}
+
+.nav-list{
+  list-style: none;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+li{
+  margin: 0 0.5rem;
+}
+
