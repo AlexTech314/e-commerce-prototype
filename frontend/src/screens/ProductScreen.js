@@ -15,7 +15,7 @@ export default function ProductScreen(props) {
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
 
-  useEffect(() => {
+  useEffect(() => {        
     dispatch(detailsProduct(productId));
   }, [dispatch, productId]);
 
@@ -34,7 +34,7 @@ export default function ProductScreen(props) {
           <Link to="/">Back to result</Link>
           <div className="row top">
             <div className="col-2">
-              <img
+              <img id="img"
                 className="large"
                 src={product.image}
                 alt={product.name}
