@@ -13,7 +13,6 @@ export default function CartScreen(props) {
     ? String(props.location.search.split('!!!')[1])
     : 1;
 
-  const [newSize, setNewSize] = useState(size);
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
   const dispatch = useDispatch();

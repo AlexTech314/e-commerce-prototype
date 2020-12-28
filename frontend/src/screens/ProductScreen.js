@@ -10,14 +10,31 @@ import MessageBox from '../components/MessageBox';
 export default function ProductScreen(props) {
   const dispatch = useDispatch();
   const productId = props.match.params.id;
-  const [size, setSize] = useState("M");
+  const [size, setSize] = useState("");
+  const [completelyOutOfStock, setCompletelyOutOfStock] = useState(false);
   const [qty, setQty] = useState(1);
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
-
-  useEffect(() => {        
+  
+  useEffect(() => {  
     dispatch(detailsProduct(productId));
-  }, [dispatch, productId]);
+}, [dispatch, productId]);
+
+function setAttributes() {
+  if (product) {
+
+  var M = (product.countInStockM > product.countInStockXL && product.countInStockM > product.countInStockL);
+  var L = (product.countInStockL > product.countInStockM && product.countInStockL > product.countInStockXL);
+  var XL = (product.countInStockXL > product.countInStockM && product.countInStockXL > product.countInStockL);
+
+   M ? setSize("M") : L ? setSize("L") : XL ? setSize("XL") : setSize("")
+    
+  if (product.countInStockXL === 0 && product.countInStockXL === 0 && product.countInStockL === 0) {
+      setCompletelyOutOfStock(true);
+  }
+}
+}
+
 
   const addToCartHandler = () => {
     props.history.push(`/cart/${productId}?qty~${qty}~?size=!!!${size}`);
@@ -46,7 +63,7 @@ export default function ProductScreen(props) {
                   <h1>{product.name}</h1>
                 </li>
                
-                <li>Pirce : ${product.price}</li>
+                <li>Price : ${product.price}</li>
                 <li>
                   Description:
                   <p>{product.description}</p>
@@ -66,7 +83,7 @@ export default function ProductScreen(props) {
                     <div className="row">
                       <div>Status</div>
                       <div>
-                        {product.countInStockM > 0 ? (
+                        {!completelyOutOfStock ? (
                           <span className="success">In Stock</span>
                         ) : (
                           <span className="danger">Unavailable</span>
@@ -74,7 +91,7 @@ export default function ProductScreen(props) {
                       </div>
                     </div>
                   </li>
-                  {product.countInStockM > 0 && (
+                  {!completelyOutOfStock > 0 && (
                     <>
                       <li>
                         <div className="row">
@@ -84,15 +101,15 @@ export default function ProductScreen(props) {
                               value={size}
                               onChange={(e) => setSize(e.target.value)}
                             >
-                                  <option key="M" value="M">
+                                  {product.countInStockM > 0 && <option key="M" value="M">
                                     M
-                                  </option>
-                                  <option key="L" value="L">
+                                  </option>}
+                                  {product.countInStockL > 0 && <option key="L" value="L">
                                     L
-                                  </option>
-                                  <option key="XL" value="XL">
+                                  </option>}
+                                  {product.countInStockXL > 0 && <option key="XL" value="XL">
                                     XL
-                                  </option>
+                                  </option>}
                                 )
                               )
                             </select>
@@ -102,7 +119,7 @@ export default function ProductScreen(props) {
                             <select
                               value={qty}
                               onChange={(e) => setQty(e.target.value)}
-                            >
+                            > {size === "" && setAttributes()}
                               {size === "M" && [...Array(product.countInStockM).keys()].map(
                                 (x) => (
                                   <option key={x + 1} value={x + 1}>

@@ -61,6 +61,7 @@ ul {
   list-style-type: none;
 }
 li {
+  padding: 0.5rem;
   margin-top: 1rem;
 }
 input,
