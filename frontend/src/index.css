@@ -18,7 +18,6 @@ body {
   width:100%;
   display: flex;
   flex-direction: row;
-
 }
 
 /* Layout */
@@ -205,6 +204,15 @@ img.medium {
   width: 100%;
   height: 100%
 }
+
+img.about {
+  max-width: 35rem;
+  max-height: 56rem;
+  width: 100%;
+  height: 100%;
+  padding-left: 0.5rem;
+}
+
 img.large {
   max-width: 45rem;
   width: 100%;
@@ -372,5 +380,40 @@ p.homescreen {
 
 li{
   margin: 0 0.5rem;
+}
+
+/* about */
+.view{
+  width: 100%;
+  height: 100%;
+}
+
+.inside-view-image{
+  width: 50%;
+  height: 100%;
+  float:left;
+}
+
+.inside-view-image img{
+  padding-top: 10%;
+}
+
+.inside-view-text{
+  width: 50%;
+  height: 100%;
+  float:left;
+}
+
+.inside-view-text h1{
+  font-size: x-large;
+  padding-top: 10%;
+  padding-left: 50%;
+}
+
+.inside-view-text p{
+  font-size: large;
+  padding-left: 50%;
+  line-height: 3.4rem;
+  padding-right: 1rem;
 }
 
