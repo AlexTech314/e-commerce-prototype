@@ -13,9 +13,20 @@ body {
 #root {
   height: 100%;
 }
+
+.img-container{
+  width:100%;
+  display: flex;
+  flex-direction: row;
+
+}
+
 /* Layout */
-.grid-container {
+.center-text{
   text-align: center;
+}
+
+.grid-container {
   display: grid;
   grid-template-areas:
     'header'
@@ -35,6 +46,10 @@ main {
   grid-area: main;
 }
 footer {
+  text-align: center;
+  font-size: small;
+  font-style: italic;
+  line-height: 1.5rem;
   grid-area: footer;
   background-color: #000000;
   color: #ffffff;
@@ -98,9 +113,15 @@ button.small {
 /* Header */
 header a {
   color: #ffffff;
-  padding: 1rem;
-  padding-right: 3rem;
+  padding: 0rem;
 }
+
+header a.padding {
+  padding-left: 1rem;
+  padding-right: 3rem;
+  margin-right: 1rem;
+}
+
 a.brand {
   
   text-align: center;
@@ -168,7 +189,7 @@ img.small {
 
 img.giant {
   max-height: 50rem;
-  width: 100%;
+  width: 50%;
   padding: 0rem;
 }
 
@@ -203,12 +224,14 @@ img.large {
 }
 
 .card-body {
+  text-align: center;
   padding: 1rem;
 }
 .card-body > * {
   margin-bottom: 0.5rem;
 }
 .price {
+  text-align: center;
   font-size: 2rem;
 }
 /* Rating */

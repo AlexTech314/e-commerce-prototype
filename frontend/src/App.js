@@ -38,28 +38,28 @@ function App() {
             </Link>
           </div>
           <div>
-          <Link to="/about">
+          <Link className="padding" to="/about">
               About
             </Link>
-            <Link to="/cart">
+            <Link className="padding" to="/cart">
               Cart
               {cartItems.length > 0 && (
                 <span className="badge">{cartItems.length}</span>
               )}
-            </Link>
+            </Link >
             {userInfo ? (
               <div className="dropdown">
-                <Link to="#">
+                <Link className="padding" to="#">
                   {userInfo.name} <i className="fa fa-caret-down"></i>{' '}
                 </Link>
                 <ul className="dropdown-content">
-                  <li>
+                  <li className="left-text">
                     <Link to="/profile">User Profile</Link>
                   </li>
-                  <li>
+                  <li className="left-text">
                     <Link to="/orderhistory">Order History</Link>
                   </li>
-                  <li>
+                  <li className="left-text">
                     <Link to="#signout" onClick={signoutHandler}>
                       Sign Out
                     </Link>
@@ -67,7 +67,7 @@ function App() {
                 </ul>
               </div>
             ) : (
-              <Link to="/signin">Sign In</Link>
+              <Link className="padding" to="/signin">Sign In</Link>
             )}
             {userInfo && userInfo.isAdmin && (
               <div className="dropdown">
