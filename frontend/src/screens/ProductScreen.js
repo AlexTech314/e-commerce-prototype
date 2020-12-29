@@ -10,31 +10,15 @@ import MessageBox from '../components/MessageBox';
 export default function ProductScreen(props) {
   const dispatch = useDispatch();
   const productId = props.match.params.id;
-  const [size, setSize] = useState("");
-  const [completelyOutOfStock, setCompletelyOutOfStock] = useState(false);
+  const [size, setSize] = useState(props.match.params.size);
+  const completelyOutOfStock = props.match.params.completelyOutOfStock[0];
   const [qty, setQty] = useState(1);
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
   
-  useEffect(() => {  
+  useEffect(() => {
     dispatch(detailsProduct(productId));
 }, [dispatch, productId]);
-
-function setAttributes() {
-  if (product) {
-
-  var M = (product.countInStockM > product.countInStockXL && product.countInStockM > product.countInStockL);
-  var L = (product.countInStockL > product.countInStockM && product.countInStockL > product.countInStockXL);
-  var XL = (product.countInStockXL > product.countInStockM && product.countInStockXL > product.countInStockL);
-
-   M ? setSize("M") : L ? setSize("L") : XL ? setSize("XL") : setSize("")
-    
-  if (product.countInStockXL === 0 && product.countInStockXL === 0 && product.countInStockL === 0) {
-      setCompletelyOutOfStock(true);
-  }
-}
-}
-
 
   const addToCartHandler = () => {
     props.history.push(`/cart/${productId}?qty~${qty}~?size=!!!${size}`);
@@ -83,15 +67,15 @@ function setAttributes() {
                     <div className="row">
                       <div>Status</div>
                       <div>
-                        {!completelyOutOfStock ? (
-                          <span className="success">In Stock</span>
-                        ) : (
+                        {completelyOutOfStock === "t" ? (
                           <span className="danger">Unavailable</span>
+                        ) : (
+                          <span className="success">In Stock</span>
                         )}
                       </div>
                     </div>
                   </li>
-                  {!completelyOutOfStock > 0 && (
+                  {completelyOutOfStock === "f" && (
                     <>
                       <li>
                         <div className="row">
@@ -119,8 +103,7 @@ function setAttributes() {
                             <select
                               value={qty}
                               onChange={(e) => setQty(e.target.value)}
-                            > {size === "" && setAttributes()}
-                              {size === "M" && [...Array(product.countInStockM).keys()].map(
+                            > {size === "M" && [...Array(product.countInStockM).keys()].map(
                                 (x) => (
                                   <option key={x + 1} value={x + 1}>
                                     {x + 1}
