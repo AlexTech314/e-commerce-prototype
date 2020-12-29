@@ -12,11 +12,11 @@ export default function HomeScreen() {
                 our hoodies are made with the finest, 100% cotton, french terry cloth.  each logo is stitched to perfection to give our customers a product of the highest quality.  at livefor, we believe every person should do what they love and love what they do.  be happy and do you. 
                 we are pursuing our passion. we livefor this.  
             </p>
-            
+
             <p>what do you livefor?</p>
         </div>
         <div className="inside-view-image">
-            <img className="about" src="../images/guys_in_hoodies.jpg" alt="big ass pic"></img>
+            <img className="about" src="../images/about.jpg" alt="big ass pic"></img>
         </div>
     </div>
   );
