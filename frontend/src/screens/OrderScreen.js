@@ -10,6 +10,8 @@ import {
   ORDER_DELIVER_RESET,
   ORDER_PAY_RESET,
 } from '../constants/orderConstants';
+import { updateProductQuantities } from '../actions/productActions';
+
 
 export default function OrderScreen(props) {
   var client_id = useRef('sb');
@@ -37,8 +39,6 @@ export default function OrderScreen(props) {
     const getClientId = async () => {
       const { data } = await Axios.get('/api/config/paypal');
       client_id.current = data;
-      console.log("regular useeffect");
-      console.log(client_id.current);
     }
     if ((client_id.current === 'sb' || client_id.current === null)) {
       getClientId();
@@ -49,16 +49,12 @@ export default function OrderScreen(props) {
     const addPayPalScript = async () => {
       const { data } = await Axios.get('/api/config/paypal');
       client_id.current = data;
-      console.log("the client id");
-      console.log(client_id.current);
       const script = document.createElement('script');
       script.type = 'text/javascript';
       script.src = `https://www.paypal.com/sdk/js?client-id=${data}`;
       script.async = true;
       script.onload = () => {
         setSdkReady(true);
-        console.log("sdk ready is ");
-        console.log(sdkReady);
       };
       document.body.appendChild(script);
     };
@@ -68,16 +64,9 @@ export default function OrderScreen(props) {
       successDeliver ||
       (order && order._id !== orderId)
     ) {
-      console.log("!order: " + !order);
-      console.log("successPay: " + !order);
-      console.log("successDeliver: " + !order);
-      console.log(orderId);
-      console.log(client_id.current);
       dispatch({ type: ORDER_PAY_RESET });
       dispatch({ type: ORDER_DELIVER_RESET });
       dispatch(detailsOrder(orderId));
-      
-      console.log("now, this is where it doesn't work");
     } else {
       if (!order.isPaid) {
         if (!window.paypal) {
@@ -89,8 +78,24 @@ export default function OrderScreen(props) {
     }
   }, [dispatch, order, orderId, sdkReady, successPay, successDeliver, client_id]);
 
+  
+    
+  
+
   const successPaymentHandler = (paymentResult) => {
     dispatch(payOrder(order, paymentResult));
+    for (var i = 0; i < order.orderItems.length; ++i) {
+      var medium_sold = order.orderItems[i].size === "M" ? order.orderItems[i].qty : 0;
+      var large_sold = order.orderItems[i].size === "L" ? order.orderItems[i].qty : 0
+      var extra_large_sold = order.orderItems[i].size === "XL" ? order.orderItems[i].qty : 0
+      
+    dispatch(updateProductQuantities({
+      _id: order.orderItems[i].product,
+      MSold: medium_sold,
+      LSold: large_sold,
+      XLSold: extra_large_sold
+    })) 
+  }
   };
 
   const deliverHandler = () => {
@@ -240,7 +245,6 @@ export default function OrderScreen(props) {
                         onApprove={async (data, actions) => {
                           const order = await actions.order.capture();
                           successPaymentHandler();
-                          console.log("Successful order: " + order);
                         }}/>
                     </PayPalScriptProvider>
                     </>
