@@ -144,7 +144,7 @@ a.brand {
   align-items: center;
 }
 .row_nav {
-  position: fixed;
+  /* position: fixed; */
   display: flex;
   flex-wrap: wrap;
   /* flex-direction: row; */

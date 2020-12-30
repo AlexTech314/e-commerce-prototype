@@ -1,4 +1,5 @@
 import Axios from 'axios';
+import { CART_EMPTY } from '../constants/cartConstants';
 import {
   USER_DETAILS_FAIL,
   USER_DETAILS_REQUEST,
@@ -57,6 +58,8 @@ export const signout = () => (dispatch) => {
   localStorage.removeItem('cartItems');
   localStorage.removeItem('shippingAddress');
   dispatch({ type: USER_SIGNOUT });
+  dispatch({ type: CART_EMPTY });
+
 };
 export const detailsUser = (userId) => async (dispatch, getState) => {
   dispatch({ type: USER_DETAILS_REQUEST, payload: userId });
