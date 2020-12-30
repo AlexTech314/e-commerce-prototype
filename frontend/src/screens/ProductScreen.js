@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+// import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import { Carousel } from 'react-responsive-carousel';
 import { Link } from 'react-router-dom';
 import { detailsProduct } from '../actions/productActions';
 import LoadingBox from '../components/LoadingBox';
@@ -34,12 +36,23 @@ export default function ProductScreen(props) {
         <div>
           <Link to="/">Back to result</Link>
           <div className="row top">
-            <div className="col-2">
-              <img id="img"
-                className="large"
-                src={product.image}
-                alt={product.name}
-              ></img>
+            <div className="col-4">
+              <Carousel showStatus={false} showArrows showThumbs={false}>
+                <div className="col-3">
+                  <img id="img"
+                    className="carousel"
+                    src={product.image}
+                    alt={product.name}
+                  ></img>
+                </div>
+                <div className="col-3">
+                  <img id="img2"
+                    className="carousel"
+                    src={product.image2}
+                    alt={product.name}
+                  ></img>
+                </div>
+              </Carousel>
             </div>
             <div className="col-1">
               <ul>
