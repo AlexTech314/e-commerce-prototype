@@ -15,6 +15,7 @@ productRouter.get(
   '/seed',
   expressAsyncHandler(async (req, res) => {
     // await Product.remove({});
+    console.log("wtf");
     const createdProducts = await Product.insertMany(data.products);
     console.log(data.products);
     res.send({ createdProducts });
@@ -39,10 +40,14 @@ productRouter.post(
     const product = new Product({
       name: 'sample name ' + Date.now(),
       image: '/images/p1.jpg',
+      image2: '/images/p2.jpg',
+      image3: '/images/p3.jpg',
       price: 0,
       category: 'sample category',
       brand: 'sample brand',
-      countInStock: 0,
+      countInStockM: 0,
+      countInStockL: 0,
+      countInStockXL: 0,
       rating: 0,
       numReviews: 0,
       description: 'sample description',
@@ -63,6 +68,8 @@ productRouter.put(
       product.name = req.body.name;
       product.price = req.body.price;
       product.image = req.body.image;
+      product.image2 = req.body.image2;
+      product.image3 = req.body.image3;
       product.category = req.body.category;
       product.brand = req.body.brand;
       product.countInStockM = req.body.countInStockM;

@@ -10,6 +10,8 @@ export default function ProductEditScreen(props) {
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
   const [image, setImage] = useState('');
+  const [image2, setImage2] = useState('');
+  const [image3, setImage3] = useState('');
   const [category, setCategory] = useState('');
   const [countInStockM, setCountInStockM] = useState('');
   const [countInStockL, setCountInStockL] = useState('');
@@ -36,6 +38,8 @@ export default function ProductEditScreen(props) {
       setName(product.name);
       setPrice(product.price);
       setImage(product.image);
+      setImage2(product.image2);
+      setImage3(product.image3);
       setCategory(product.category);
       setCountInStockM(product.countInStockM);
       setCountInStockL(product.countInStockL);
@@ -53,6 +57,8 @@ export default function ProductEditScreen(props) {
         name,
         price,
         image,
+        image2,
+        image3,
         category,
         brand,
         countInStockM,
@@ -69,6 +75,7 @@ export default function ProductEditScreen(props) {
   const { userInfo } = userSignin;
   const uploadFileHandler = async (e) => {
     const file = e.target.files[0];
+    console.log(file);
     const bodyFormData = new FormData();
     bodyFormData.append('image', file);
     setLoadingUpload(true);
@@ -80,6 +87,47 @@ export default function ProductEditScreen(props) {
         },
       });
       setImage(data);
+      setLoadingUpload(false);
+    } catch (error) {
+      setErrorUpload(error.message);
+      setLoadingUpload(false);
+    }
+  };
+
+  const uploadFileHandler2 = async (e) => {
+    const file = e.target.files[0];
+    console.log(file);
+    const bodyFormData = new FormData();
+    bodyFormData.append('image', file);
+    setLoadingUpload(true);
+    try {
+      const { data } = await Axios.post('/api/uploads', bodyFormData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      });
+      setImage2(data);
+      setLoadingUpload(false);
+    } catch (error) {
+      setErrorUpload(error.message);
+      setLoadingUpload(false);
+    }
+  };
+
+  const uploadFileHandler3 = async (e) => {
+    const file = e.target.files[0];
+    const bodyFormData = new FormData();
+    bodyFormData.append('image', file);
+    setLoadingUpload(true);
+    try {
+      const { data } = await Axios.post('/api/uploads', bodyFormData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      });
+      setImage3(data);
       setLoadingUpload(false);
     } catch (error) {
       setErrorUpload(error.message);
@@ -138,6 +186,52 @@ export default function ProductEditScreen(props) {
                 id="imageFile"
                 label="Choose Image"
                 onChange={uploadFileHandler}
+              ></input>
+              {loadingUpload && <LoadingBox></LoadingBox>}
+              {errorUpload && (
+                <MessageBox variant="danger">{errorUpload}</MessageBox>
+              )}
+            </div>
+            <div>
+              <label htmlFor="image2">Image2</label>
+              <input
+                id="image2"
+                type="text"
+                placeholder="Enter second image"
+                value={image2}
+                onChange={(e) => setImage2(e.target.value)}
+              ></input>
+            </div>
+            <div>
+              <label htmlFor="imageFile2">Image File 2</label>
+              <input
+                type="file"
+                id="imageFile2"
+                label="Choose Image"
+                onChange={uploadFileHandler2}
+              ></input>
+              {loadingUpload && <LoadingBox></LoadingBox>}
+              {errorUpload && (
+                <MessageBox variant="danger">{errorUpload}</MessageBox>
+              )}
+            </div>
+            <div>
+              <label htmlFor="image3">Image3</label>
+              <input
+                id="image3"
+                type="text"
+                placeholder="Enter third image (optional)"
+                value={image3}
+                onChange={(e) => setImage3(e.target.value)}
+              ></input>
+            </div>
+            <div>
+              <label htmlFor="imageFile3">Image File 3</label>
+              <input
+                type="file"
+                id="imageFile3"
+                label="Choose Image"
+                onChange={uploadFileHandler3}
               ></input>
               {loadingUpload && <LoadingBox></LoadingBox>}
               {errorUpload && (
