@@ -156,7 +156,7 @@ export default function OrderScreen(props) {
                   {order.orderItems.map((item) => (
                     <li key={item.product}>
                       <div className="row">
-                        <div>
+                        <div className="min-30">
                           <img
                             src={item.image}
                             alt={item.name}
@@ -171,7 +171,7 @@ export default function OrderScreen(props) {
                         <div className="min-30">
                           <div>{item.size}</div>
                         </div>
-                        <div>
+                        <div className="min-30">
                           {item.qty} x ${item.price} = ${item.qty * item.price}
                         </div>
                       </div>

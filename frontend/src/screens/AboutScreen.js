@@ -3,7 +3,7 @@ import React from 'react';
 export default function HomeScreen() {
 
   return (
-    <div className="view">
+    <div className="row">
         <div className="inside-view-text">
             <h1>about</h1>
             <p>livefor began as three childhood friends came together to bring their vision of high quality, casual streetwear to life. 

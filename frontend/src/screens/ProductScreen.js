@@ -36,7 +36,7 @@ export default function ProductScreen(props) {
         <div>
           <Link to="/">Back to result</Link>
           <div className="row top">
-            <div className="col-4">
+            <div className="col-1">
               <Carousel showStatus={false} showArrows showThumbs={false}>
                 <div className="col-3">
                   <img id="img"

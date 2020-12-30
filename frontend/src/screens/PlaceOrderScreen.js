@@ -66,7 +66,7 @@ export default function PlaceOrderScreen(props) {
                   {cart.cartItems.map((item) => (
                     <li key={item.product}>
                       <div className="row">
-                        <div>
+                        <div className="min-30">
                           <img
                             src={item.image}
                             alt={item.name}
@@ -81,7 +81,7 @@ export default function PlaceOrderScreen(props) {
                         <div className="min-30">
                           <p>{item.size}</p>
                         </div>
-                        <div>
+                        <div className="min-30">
                           {item.qty} x ${item.price} = ${item.qty * item.price}
                         </div>
                       </div>

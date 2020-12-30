@@ -38,7 +38,7 @@ function App() {
               <img className="big_small" src="../images/tentative_logo.jpg" alt="logo"></img>
             </Link>
           </div>
-          <div>
+          <div className="right_align">
           <Link className="padding" to="/about">
               About
             </Link>
