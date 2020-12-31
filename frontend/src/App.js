@@ -131,24 +131,21 @@ function App() {
                                 <i class="fab fa-instagram" aria-hidden="true"></i>
                             </a>
                         </li>
-                        {/* <li>
-                            <a href="#" class="icon-link">
-                                <i class="fab fa-twitter-square"></i>
+                        <li>
+                            <a href="mailto:alest314@gmail.com" class="icon-link">
+                                <i class="fas fa-envelope"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="icon-link">
-                                <i class="fab fa-dribbble-square"></i>
+                            <a href="tel:1-631-935-2590" class="icon-link">
+                                <i class="fas fa-phone"></i>
                             </a>
-                        </li>  */}
+                        </li> 
                     </ul>
                 </div>
-          <>
-          <div>Contact Us:</div>
-          <div>631-935-2590</div>
-          <div>alest314@gmail.com</div>
+          <br></br>
           <div>@2020 all rights reserved</div>
-          </>
+          
           </footer>
         
       </div>

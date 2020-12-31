@@ -386,8 +386,16 @@ p.homescreen {
   color: #fcbed3;
 }
 
-.fa-twitter-square:hover{
-  color: #38a1f3;
+.fa-envelope{
+  color: rgb(156, 156, 156);
+}
+
+.fa-envelope:hover{
+  color: rgb(255, 136, 136);
+}
+
+.fa-phone:hover{
+  color: #007419;
 }
 
 .nav-list{
