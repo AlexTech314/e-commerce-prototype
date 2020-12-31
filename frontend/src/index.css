@@ -160,8 +160,9 @@ a.brand {
 .foot_stack {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
-  padding: 5rem;
+  justify-content: space-between;
+  padding-top: 1%;
+  padding-bottom: 5rem;
   height: 5rem;
 }
 
@@ -373,7 +374,7 @@ p.homescreen {
 .social-media{
   display: flex;
   flex-direction: row;
-  margin-top: 2rem;
+  margin-top: 0;
   margin-bottom: 1rem;
 }
 
