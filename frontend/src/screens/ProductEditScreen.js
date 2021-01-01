@@ -73,6 +73,7 @@ export default function ProductEditScreen(props) {
 
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
+
   const uploadFileHandler = async (e) => {
     const file = e.target.files[0];
     console.log(file);
@@ -80,10 +81,10 @@ export default function ProductEditScreen(props) {
     bodyFormData.append('image', file);
     setLoadingUpload(true);
     try {
-      const { data } = await Axios.post('/api/uploads', bodyFormData, {
+      const { data } = await Axios.post('/api/uploads/s3', bodyFormData, {
         headers: {
           'Content-Type': 'multipart/form-data',
-          Authorization: `Bearer ${userInfo.token}`,
+          // Authorization: `Bearer ${userInfo.token}`,
         },
       });
       setImage(data);
@@ -101,10 +102,10 @@ export default function ProductEditScreen(props) {
     bodyFormData.append('image', file);
     setLoadingUpload(true);
     try {
-      const { data } = await Axios.post('/api/uploads', bodyFormData, {
+      const { data } = await Axios.post('/api/uploads/s3', bodyFormData, {
         headers: {
           'Content-Type': 'multipart/form-data',
-          Authorization: `Bearer ${userInfo.token}`,
+          // Authorization: `Bearer ${userInfo.token}`,
         },
       });
       setImage2(data);
@@ -121,10 +122,10 @@ export default function ProductEditScreen(props) {
     bodyFormData.append('image', file);
     setLoadingUpload(true);
     try {
-      const { data } = await Axios.post('/api/uploads', bodyFormData, {
+      const { data } = await Axios.post('/api/uploads/s3', bodyFormData, {
         headers: {
           'Content-Type': 'multipart/form-data',
-          Authorization: `Bearer ${userInfo.token}`,
+          // Authorization: `Bearer ${userInfo.token}`,
         },
       });
       setImage3(data);
