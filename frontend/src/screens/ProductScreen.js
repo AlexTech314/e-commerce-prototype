@@ -60,8 +60,8 @@ export default function ProductScreen(props) {
                   <h1>{product.name}</h1>
                 </li>
                
-                <li>Price : ${product.price}</li>
-                <li>
+                <li className="indent">Price : ${product.price}</li>
+                <li className="indent">
                   Description:
                   <p>{product.description}</p>
                 </li>

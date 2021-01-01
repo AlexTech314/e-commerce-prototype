@@ -18,7 +18,7 @@ export default function Product(props) {
 
   
   return (
-    <div key={product._id} className="card">
+    <div key={product._id} className="card_hover">
       <Link to={`/product/${product._id}/${size}/${completelyOutOfStock}`}>
         <img className="medium" src={product.image} alt={product.name} />
       </Link>
