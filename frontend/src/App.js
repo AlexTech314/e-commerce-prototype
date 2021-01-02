@@ -35,7 +35,7 @@ function App() {
         <header className="row_nav">
           <div>
             <Link className="brand" to="/">
-              <img className="big_small" src="../images/tentative_logo.jpg" alt="logo"></img>
+              <img className="big_small" src="https://unsad-bucket.s3.us-east-2.amazonaws.com/tentative_logo.jpg" alt="logo"></img>
             </Link>
           </div>
           <div className="right_align">

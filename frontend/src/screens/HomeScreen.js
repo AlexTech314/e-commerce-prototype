@@ -17,14 +17,14 @@ export default function HomeScreen() {
   return (
     <div>
       <div className="img-containter">
-          <img className="giant" src="../images/guys_in_hoodies.jpg" alt="big ass pic"></img>
-          <img className="giant" src="../images/guy_in_shirt.jpg" alt="big ass pic"></img>
+          <img className="giant" src="https://unsad-bucket.s3.us-east-2.amazonaws.com/guys_in_hoodies.jpg" alt="big ass pic"></img>
+          <img className="giant" src="https://unsad-bucket.s3.us-east-2.amazonaws.com/guy_in_shirt.jpg" alt="big ass pic"></img>
       </div>
       
       <div className="center-text">
-        <p className="homescreen">Our shit is straight up fire. We turn on the oven, through these hoodies in there, and they come out cooked to
-          perfection. Honestly, when I'm wearing an UnSad hoodie, I'm scared for the safety of my cock because of how many 
-          girls want it slapping their face.
+        <p className="homescreen">Our stuff is the best there is. We turn on the oven, throw our merch in there, and they come out cooked to
+          perfection. Honestly, when I'm wearing an UnSad hoodie, I feel absolutely, positively fantastic, no joke. You buy one of these and
+          you absolutely won't regret it.
         </p><br></br>
         <p>Check out our products...</p>
       </div>
