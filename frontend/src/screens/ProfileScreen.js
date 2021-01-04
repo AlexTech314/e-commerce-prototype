@@ -66,7 +66,8 @@ export default function ProfileScreen() {
               <input
                 id="name"
                 type="text"
-                placeholder="Enter name"
+                pattern="^[a-zA-Z\s]*$"
+                placeholder="Enter name: letters and spaces only"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               ></input>
@@ -86,7 +87,8 @@ export default function ProfileScreen() {
               <input
                 id="password"
                 type="password"
-                placeholder="Enter password"
+                placeholder="Enter password: minimum 8 characters"
+                pattern=".{8,}"
                 onChange={(e) => setPassword(e.target.value)}
               ></input>
             </div>
@@ -95,7 +97,7 @@ export default function ProfileScreen() {
               <input
                 id="confirmPassword"
                 type="password"
-                placeholder="Enter confirm password"
+                placeholder="Confirm password"
                 onChange={(e) => setConfirmPassword(e.target.value)}
               ></input>
             </div>

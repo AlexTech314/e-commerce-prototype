@@ -37,7 +37,8 @@ export default function ShippingAddressScreen(props) {
           <input
             type="text"
             id="fullName"
-            placeholder="Enter full name"
+            pattern="^[a-zA-Z\s]*$"
+            placeholder="Full Name: only letters and spaces"
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
             required
@@ -48,6 +49,7 @@ export default function ShippingAddressScreen(props) {
           <input
             type="text"
             id="address"
+            pattern="[A-Za-z0-9'\.\-\s\,]"
             placeholder="Enter address"
             value={address}
             onChange={(e) => setAddress(e.target.value)}
@@ -59,6 +61,7 @@ export default function ShippingAddressScreen(props) {
           <input
             type="text"
             id="city"
+            pattern="[A-Za-z]+$"
             placeholder="Enter city"
             value={city}
             onChange={(e) => setCity(e.target.value)}
@@ -70,6 +73,7 @@ export default function ShippingAddressScreen(props) {
           <input
             type="text"
             id="postalCode"
+            pattern="^[0-9]+$"
             placeholder="Enter postal code"
             value={postalCode}
             onChange={(e) => setPostalCode(e.target.value)}
@@ -81,6 +85,7 @@ export default function ShippingAddressScreen(props) {
           <input
             type="text"
             id="country"
+            pattern="[A-Za-z0-9'\.\-\s\,]"
             placeholder="Enter country"
             value={country}
             onChange={(e) => setCountry(e.target.value)}

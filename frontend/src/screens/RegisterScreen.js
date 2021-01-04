@@ -45,7 +45,8 @@ export default function RegisterScreen(props) {
           <input
             type="text"
             id="name"
-            placeholder="Enter name"
+            pattern="^[a-zA-Z\s]*$"
+            placeholder="Enter Name: only letters and spaces"
             required
             onChange={(e) => setName(e.target.value)}
           ></input>
@@ -65,7 +66,8 @@ export default function RegisterScreen(props) {
           <input
             type="password"
             id="password"
-            placeholder="Enter password"
+            placeholder="Enter password: 8 characters minimum"
+            pattern=".{8,}"
             required
             onChange={(e) => setPassword(e.target.value)}
           ></input>
@@ -76,6 +78,7 @@ export default function RegisterScreen(props) {
             type="password"
             id="confirmPassword"
             placeholder="Enter confirm password"
+            pattern=".{8,}"
             required
             onChange={(e) => setConfirmPassword(e.target.value)}
           ></input>
