@@ -345,19 +345,62 @@ img.large {
   right: 0;
   min-width: 12rem;
   padding: 1rem;
+  padding-top: 0rem;
   z-index: 1;
   background-color: #203040;
   margin: 0;
   margin-top: 0.4rem;
   border-radius: 0.5rem;
 }
+
 .dropdown:hover .dropdown-content {
   display: block;
+  position: absolute;
+  z-index: 100;
 }
 
 .dropdown-content:hover .dropdown-content{
-  display: block
+  display: block;
+  position: absolute;
+  z-index: 100;
 }
+
+.padding:hover .dropdown-content{
+  display: block;
+  position: absolute;
+  z-index: 100;
+}
+
+.left-text:hover .dropdown-content{
+  display: block;
+  position: absolute;
+  z-index: 100;
+}
+
+.dropdown:active .dropdown-content {
+  display: block;
+  position: absolute;
+  z-index: 100;
+}
+
+.dropdown-content:active .dropdown-content{
+  display: block;
+  position: absolute;
+  z-index: 100;
+}
+
+.padding:active .dropdown-content{
+  display: block;
+  position: absolute;
+  z-index: 100;
+}
+
+.left-text:active .dropdown-content{
+  display: block;
+  position: absolute;
+  z-index: 100;
+}
+
 /* Checkout Steps */
 .checkout-steps > div {
   border-top: 0.3rem #c0c0c0 solid;
