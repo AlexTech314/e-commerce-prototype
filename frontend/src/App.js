@@ -25,6 +25,10 @@ function App() {
   const { cartItems } = cart;
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
+  var name = '';
+  if (userInfo) {
+    name = userInfo.name.split(" ")[0];
+  }
   const dispatch = useDispatch();
   const signoutHandler = () => {
     dispatch(signout());
@@ -37,7 +41,7 @@ function App() {
           <div> 
               <div className="dropdown">
                 <Link className="padding" to="#">
-                  {userInfo.name} <i className="fa fa-caret-down"></i>{' '}
+                  {name} <i className="fa fa-caret-down"></i>{' '}
                 </Link>
                 <ul className="dropdown-content">
                   <li className="left-text">
