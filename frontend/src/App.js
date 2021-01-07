@@ -56,7 +56,7 @@ function App() {
               </div>  
             ) : (
               <div>
-              <Link className="padding" to="/signin">Sign In</Link>
+              <Link className="padding_left" to="/signin">Sign In</Link>
               </div>
             )}
           <div>

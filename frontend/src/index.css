@@ -110,8 +110,8 @@ textarea:hover
   border: 0.1rem #404040 solid;
 }
 
-button:hover {
-
+.padding_left{
+  padding-left: 3rem;
 }
 
 button.primary {
@@ -137,12 +137,13 @@ header a.padding {
 }
 
 a.brand {
-  
+  padding-left: 60%;
   text-align: center;
   color: #000000;
   font-size: 3rem;
   font-weight: bold;
 }
+
 .badge {
   background-color: #f02020;
   color: #ffffff;
@@ -572,6 +573,14 @@ header a.padding{
   flex-direction: row;
   padding-right: 0.5rem;
   text-align: right;
+}
+
+a.brand {
+  text-align: center;
+  padding-left: 0;
+  color: #000000;
+  font-size: 3rem;
+  font-weight: bold;
 }
 
 }
