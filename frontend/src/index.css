@@ -142,7 +142,6 @@ a.brand {
   color: #000000;
   font-size: 3rem;
   font-weight: bold;
-  padding-left: 35%;
 }
 .badge {
   background-color: #f02020;
@@ -347,12 +346,12 @@ img.large {
   right: 0;
   min-width: 12rem;
   padding: 1rem;
-  padding-top: 0rem;
   z-index: 1;
-  background-color: #203040;
+  background-color: #ffffff;
   margin: 0;
   margin-top: 0.4rem;
-  border-radius: 0.5rem;
+  border: solid;
+  border-color: #000000;
 }
 
 .dropdown:hover .dropdown-content {
@@ -455,6 +454,10 @@ p.homescreen {
 
 .fa-instagram{
   color: #b4b4b4;
+}
+
+.fa-user{
+  padding-left: 2%;
 }
 
 .fa-instagram:hover{

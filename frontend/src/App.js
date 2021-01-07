@@ -33,22 +33,8 @@ function App() {
     <BrowserRouter>
       <div className="grid-container">
         <header className="row_nav">
-          <div>
-            <Link className="brand" to="/">
-              <img className="big_small" src="https://unsad-bucket.s3.us-east-2.amazonaws.com/tentative_logo.jpg" alt="logo"></img>
-            </Link>
-          </div>
-          <div className="right_align">
-          <Link className="padding" to="/about">
-              About
-            </Link>
-            <Link className="padding" to="/cart">
-              Cart
-              {cartItems.length > 0 && (
-                <span className="badge">{cartItems.length}</span>
-              )}
-            </Link >
-            {userInfo ? (
+        {userInfo ? (     
+          <div> 
               <div className="dropdown">
                 <Link className="padding" to="#">
                   {userInfo.name} <i className="fa fa-caret-down"></i>{' '}
@@ -67,9 +53,28 @@ function App() {
                   </li>
                 </ul>
               </div>
+              </div>  
             ) : (
+              <div>
               <Link className="padding" to="/signin">Sign In</Link>
+              </div>
             )}
+          <div>
+            <Link className="brand" to="/">
+              <img className="big_small" src="https://unsad-bucket.s3.us-east-2.amazonaws.com/tentative_logo.jpg" alt="logo"></img>
+            </Link>
+          </div>
+          <div className="right_align">
+          <Link className="padding" to="/about">
+              About
+            </Link>
+            <Link className="padding" to="/cart">
+              Cart
+              {cartItems.length > 0 && (
+                <span className="badge">{cartItems.length}</span>
+              )}
+            </Link >
+ 
             {userInfo && userInfo.isAdmin && (
               <div className="dropdown">
                 <Link className="padding" to="#admin">
