@@ -38,7 +38,7 @@ body {
 header {
   height: 8.5rem;
   grid-area: header;
-  background-color: #000000;
+  background-color: #ffffff;
   padding-top: 1rem;
 }
 main {
@@ -126,7 +126,7 @@ button.small {
 }
 /* Header */
 header a {
-  color: #ffffff;
+  color: #000000;
   padding: 0rem;
 }
 
@@ -142,6 +142,7 @@ a.brand {
   color: #000000;
   font-size: 3rem;
   font-weight: bold;
+  padding-left: 35%;
 }
 .badge {
   background-color: #f02020;
@@ -158,13 +159,14 @@ a.brand {
   align-items: center;
 }
 .row_nav {
-  /* position: fixed; */
+  position: fixed;
   display: flex;
   flex-wrap: wrap;
-  /* flex-direction: row; */
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  z-index: 100;
 }
 .row.center {
   justify-content: center;
