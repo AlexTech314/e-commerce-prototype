@@ -25,6 +25,10 @@ function App() {
   const { cartItems } = cart;
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
+  var userName = '';
+  if (userInfo) {
+     userName = userInfo.name.split(" ")[0];
+  }
   const dispatch = useDispatch();
   const signoutHandler = () => {
     dispatch(signout());
@@ -36,8 +40,8 @@ function App() {
         {userInfo ? (     
           <div> 
               <div className="dropdown">
-                <Link className="padding" to="#">
-                  {userInfo.name} <i className="fa fa-caret-down"></i>{' '}
+                <Link className="padding_left" to="#">
+                 {userName} <i className="fa fa-caret-down"></i>{' '}
                 </Link>
                 <ul className="dropdown-content">
                   <li className="left-text">

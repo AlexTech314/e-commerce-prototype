@@ -112,6 +112,7 @@ textarea:hover
 
 .padding_left{
   padding-left: 3rem;
+  
 }
 
 button.primary {
@@ -134,10 +135,11 @@ header a.padding {
   padding-left: 1rem;
   padding-right: 3rem;
   margin-right: 1rem;
+  
 }
 
 a.brand {
-  padding-left: 60%;
+  padding-left: 0%;
   text-align: center;
   color: #000000;
   font-size: 3rem;
@@ -339,8 +341,9 @@ img.large {
 /* Dropdown */
 .dropdown {
   display: inline-block;
-  position: relative;
+  position: fixed;
 }
+
 .dropdown-content {
   position: absolute;
   display: none;
@@ -357,49 +360,49 @@ img.large {
 
 .dropdown:hover .dropdown-content {
   display: block;
-  position: absolute;
+  position: relative;
   z-index: 100;
 }
 
 .dropdown-content:hover .dropdown-content{
   display: block;
-  position: absolute;
+  position: relative;
   z-index: 100;
 }
 
 .padding:hover .dropdown-content{
   display: block;
-  position: absolute;
+  position: relative;
   z-index: 100;
 }
 
 .left-text:hover .dropdown-content{
   display: block;
-  position: absolute;
+  position: relative;
   z-index: 100;
 }
 
 .dropdown:active .dropdown-content {
   display: block;
-  position: absolute;
+  position: relative;
   z-index: 100;
 }
 
 .dropdown-content:active .dropdown-content{
   display: block;
-  position: absolute;
+  position: relative;
   z-index: 100;
 }
 
 .padding:active .dropdown-content{
   display: block;
-  position: absolute;
+  position: relative;
   z-index: 100;
 }
 
 .left-text:active .dropdown-content{
   display: block;
-  position: absolute;
+  position: relative;
   z-index: 100;
 }
 
@@ -573,6 +576,10 @@ header a.padding{
   flex-direction: row;
   padding-right: 0.5rem;
   text-align: right;
+}
+
+header a.padding_left{
+  padding-left: 1rem;
 }
 
 a.brand {
