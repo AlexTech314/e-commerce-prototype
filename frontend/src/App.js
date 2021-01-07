@@ -40,7 +40,7 @@ function App() {
         {userInfo ? (     
           <div> 
               <div className="dropdown">
-                <Link className="padding" to="#">
+                <Link className="padding_left" to="#">
                   {name} <i className="fa fa-caret-down"></i>{' '}
                 </Link>
                 <ul className="dropdown-content">

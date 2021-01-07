@@ -345,6 +345,7 @@ img.large {
   position: absolute;
   display: none;
   right: 0;
+  left: 1rem;
   min-width: 12rem;
   padding: 1rem;
   z-index: 1;
@@ -573,6 +574,10 @@ header a.padding{
   flex-direction: row;
   padding-right: 0.5rem;
   text-align: right;
+}
+
+header a.padding_left{
+padding-left: 1.5rem;
 }
 
 a.brand {
