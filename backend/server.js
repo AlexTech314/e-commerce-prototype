@@ -22,7 +22,9 @@ if(process.env.NODE_ENV === 'production') {
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/amazona', {
+mongoose.connect(process.env.MONGODB_URL, {
+  user: process.env.MONGODB_USER,
+  pass: process.env.MONGODB_PASS,
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
@@ -36,8 +38,8 @@ app.get('/api/config/paypal', (req, res) => {
 });
 const __dirname = path.resolve();
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
-app.use(express.static(path.join(__dirname, "/frontend/build")));
-app.get("*", (req, res) => res.sendFile(path.join(__dirname, "/frontend/build/index.html")));
+// app.use(express.static(path.join(__dirname, "/frontend/build")));
+// app.get("*", (req, res) => res.sendFile(path.join(__dirname, "/frontend/build/index.html")));
 
 // app.get('/', (req, res) => {
 //   res.send('Server is ready');
