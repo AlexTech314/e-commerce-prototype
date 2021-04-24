@@ -30,7 +30,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
     const {
       userSignin: { userInfo },
     } = getState();
-    const { data } = await Axios.post('https://e-com-api.com/api/orders', order, {
+    const { data } = await Axios.post('https://ruxjpld1h5.execute-api.us-east-1.amazonaws.com/api/orders', order, {
       headers: {
         Authorization: `Bearer ${userInfo.token}`,
       },
@@ -54,7 +54,7 @@ export const detailsOrder = (orderId) => async (dispatch, getState) => {
     userSignin: { userInfo },
   } = getState();
   try {
-    const { data } = await Axios.get(`https://e-com-api.com/api/orders/${orderId}`, {
+    const { data } = await Axios.get(`https://ruxjpld1h5.execute-api.us-east-1.amazonaws.com/api/orders/${orderId}`, {
       headers: { Authorization: `Bearer ${userInfo.token}` },
     });
     dispatch({ type: ORDER_DETAILS_SUCCESS, payload: data });
@@ -75,7 +75,7 @@ export const payOrder = (order, paymentResult) => async (
     userSignin: { userInfo },
   } = getState();
   try {
-    const { data } = Axios.put(`https://e-com-api.com/api/orders/${order._id}/pay`, paymentResult, {
+    const { data } = Axios.put(`https://ruxjpld1h5.execute-api.us-east-1.amazonaws.com/api/orders/${order._id}/pay`, paymentResult, {
       headers: { Authorization: `Bearer ${userInfo.token}` },
     });
     dispatch({ type: ORDER_PAY_SUCCESS, payload: data });
@@ -93,7 +93,7 @@ export const listOrderMine = () => async (dispatch, getState) => {
     userSignin: { userInfo },
   } = getState();
   try {
-    const { data } = await Axios.get('https://e-com-api.com/api/orders/mine', {
+    const { data } = await Axios.get('https://ruxjpld1h5.execute-api.us-east-1.amazonaws.com/api/orders/mine', {
       headers: {
         Authorization: `Bearer ${userInfo.token}`,
       },
@@ -113,7 +113,7 @@ export const listOrders = () => async (dispatch, getState) => {
     userSignin: { userInfo },
   } = getState();
   try {
-    const { data } = await Axios.get('https://e-com-api.com/api/orders', {
+    const { data } = await Axios.get('https://ruxjpld1h5.execute-api.us-east-1.amazonaws.com/api/orders', {
       headers: { Authorization: `Bearer ${userInfo.token}` },
     });
     console.log(data);
@@ -132,7 +132,7 @@ export const deleteOrder = (orderId) => async (dispatch, getState) => {
     userSignin: { userInfo },
   } = getState();
   try {
-    const { data } = Axios.delete(`https://e-com-api.com/api/orders/${orderId}`, {
+    const { data } = Axios.delete(`https://ruxjpld1h5.execute-api.us-east-1.amazonaws.com/api/orders/${orderId}`, {
       headers: { Authorization: `Bearer ${userInfo.token}` },
     });
     dispatch({ type: ORDER_DELETE_SUCCESS, payload: data });
@@ -152,7 +152,7 @@ export const deliverOrder = (orderId) => async (dispatch, getState) => {
   } = getState();
   try {
     const { data } = Axios.put(
-      `https://e-com-api.com/api/orders/${orderId}/deliver`,
+      `https://ruxjpld1h5.execute-api.us-east-1.amazonaws.com/api/orders/${orderId}/deliver`,
       {},
       {
         headers: { Authorization: `Bearer ${userInfo.token}` },
