@@ -152,7 +152,7 @@ export const deliverOrder = (orderId) => async (dispatch, getState) => {
   } = getState();
   try {
     const { data } = Axios.put(
-      `https://ruxjpld1h5.execute-api.us-east-1.amazonaws.com/api/orders/${orderId}/deliver`,
+      `/api/orders/${orderId}/deliver`,
       {},
       {
         headers: { Authorization: `Bearer ${userInfo.token}` },
