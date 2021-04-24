@@ -29,9 +29,9 @@ if(process.env.NODE_ENV === 'production') {
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-mongoose.connect(process.env.MONGODB_URL, {
-  user: process.env.MONGODB_USER,
-  pass: process.env.MONGODB_PASS,
+mongoose.connect(process.env.MONGO_URL, {
+  user: process.env.MONGO_USER,
+  pass: process.env.MONGO_PASS,
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
@@ -44,12 +44,16 @@ app.get('/api/config/paypal', (req, res) => {
   res.send(process.env.PAYPAL_CLIENT_ID || 'sb');
 });
 const __dirname = path.resolve();
-app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
-app.use(express.static(path.join(__dirname, "/frontend/build")));
-app.get("*", (req, res) => res.sendFile(path.join(__dirname, "/frontend/build/index.html")));
+//app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
+//app.use(express.static(path.join(__dirname, "/frontend/build")));
+//app.get("*", (req, res) => res.sendFile(path.join(__dirname, "/frontend/build/index.html")));
 
 app.get('/', (req, res) => {
   res.send('Server is ready');
+});
+
+app.get('/api/health', (req, res) => {
+  res.send('chillin');
 });
 
 app.use((err, req, res, next) => {
