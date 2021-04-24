@@ -6,6 +6,12 @@ import productRouter from './routers/productRouter.js';
 import userRouter from './routers/userRouter.js';
 import orderRouter from './routers/orderRouter.js';
 import uploadRouter from './routers/uploadRouter.js';
+import cors from 'cors';
+
+const corsOptions = {
+  origin: 'https://d1ggovhqtdl9yu.cloudfront.net',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
 
 dotenv.config();
 
@@ -20,6 +26,7 @@ if(process.env.NODE_ENV === 'production') {
   })
 }
 
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 mongoose.connect(process.env.MONGODB_URL, {
