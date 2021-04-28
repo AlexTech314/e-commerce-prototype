@@ -22,9 +22,9 @@ if(process.env.NODE_ENV === 'production') {
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-mongoose.connect(process.env.MONGODB_URL, {
-  user: process.env.MONGODB_USER,
-  pass: process.env.MONGODB_PASS,
+mongoose.connect('mongodb://localhost:27017', {
+  // user: process.env.MONGODB_USER,
+  // pass: process.env.MONGODB_PASS,
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
