@@ -37,7 +37,7 @@ export default function OrderScreen(props) {
 
   useEffect(() => {
     const getClientId = async () => {
-      const { data } = await Axios.get('/api/config/paypal');
+      const { data } = await Axios.get('https://e-com-api.com/api/config/paypal');
       client_id.current = data;
     }
     if ((client_id.current === 'sb' || client_id.current === null)) {
@@ -47,7 +47,7 @@ export default function OrderScreen(props) {
 
   useEffect(() => {
     const addPayPalScript = async () => {
-      const { data } = await Axios.get('/api/config/paypal');
+      const { data } = await Axios.get('https://e-com-api.com/api/config/paypal');
       client_id.current = data;
       const script = document.createElement('script');
       script.type = 'text/javascript';
